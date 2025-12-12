@@ -1,0 +1,49 @@
+pwd → print working directory: se utiliza para mostrar la ruta completa del directorio actual en el que te encuentras dentro del terminal o shell →
+
+ls → lista las carpetas y archivos que tenemos en esa ubicación →
+
+ls -a → lista los elementos de la carpeta en que estemos ubicados en la terminal + aquellos elementos ocultos →
+
+clear → para “limpiar” la pantalla de la terminal →
+
+cd → change directory cambiar de directorio/carpeta →
+
+cd .. → nos devolvemos 1 nodo hacia atrás →
+
+mkdir → NombreCarpetaNueva → para crear una carpeta nueva →
+
+touch NombreArchivo.extension → para crear archivos →
+
+rm NombredeArchivo.extension → para eliminar, no existe pap
+
+rm -r NombreCarpeta →
+para eliminar la carpeta →
+
+mv NombreCarpeta/ NombreUbicaciónFinal/ → Para mover carpeta a otra ubicación →
+
+git branch -M main 
+→ para cambiar la rama del proyecto de rama master a rama main →
+
+
+git add . → git commit -m "mensaje" → git status para
+revisar.
+
+git --version → Muestra la versión instalada de Git. git --version
+
+git init → Inicializa un repositorio Git en la carpeta
+actual. git init
+(staging).
+
+git status → Muestra el estado del repositorio: cambios,
+git add .  (agrega todos los
+archivos)
+
+git status → Muestra el estado del repositorio: cambios,
+git commit  Registra los cambios con un mensaje
+descriptivo.
+
+git commit -m "Primer
+commit"
+
+git status → Muestra el estado del repositorio: cambios,
+staging, rama, etc. git status
