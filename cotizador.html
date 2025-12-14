@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cotizador – Mauco Pro</title>
+<link rel="stylesheet" href="assets/css/style.css">
+<style>
+    body {
+        font-family: 'Open Sans', Arial, sans-serif;
+        background-color: #f8f8f8;
+        margin: 0;
+        padding: 0;
+        color: #333;
+    }
+    header {
+        background: #111;
+        color: #fff;
+        padding: 15px 0;
+        text-align: center;
+    }
+    h1 { font-size: 1.8em; margin: 10px 0; }
+    .contenedor {
+        max-width: 900px;
+        margin: 40px auto;
+        padding: 20px;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .bloque {
+        border: 1px solid #ddd;
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 10px;
+        background: #fafafa;
+    }
+    .bloque h3 {
+        background: #5ecabc;
+        color: #fff;
+        padding: 8px;
+        border-radius: 6px;
+        text-align: center;
+    }
+    label {
+        display: block;
+        margin-top: 8px;
+        font-weight: bold;
+    }
+    input, select {
+        width: 100%;
+        padding: 8px;
+        margin-top: 4px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    button {
+        display: block;
+        background-color: #5ecabc;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        padding: 12px;
+        font-size: 1em;
+        cursor: pointer;
+        margin: 10px 0;
+        width: 100%;
+    }
+    button:hover {
+        background-color: #5ecabc;
+    }
+    .resultado-global {
+        background-color: #eee;
+        padding: 15px;
+        border-radius: 8px;
+        text-align: center;
+        margin-top: 20px;
+    }
+    .resultado-global p { font-size: 1.1em; margin: 8px 0; }
+    .nota {
+        text-align: center;
+        color: #666;
+        font-size: 0.9em;
+    }
+    </style>
+    </head>
+    <body>
+
+    <header>
+        <h1>Cotizador rolltek</h1>
+        <p style="color:gray;">💥 15% descuento en Instalación </p>
+    </header>
+
+    <div class="contenedor">
+        <h2 style="text-align:center; color:#5ecabc;">Cortinas</h2>
+        <div id="cortinas"></div>
+        <button id="agregarCortina">➕ Agregar otra cortina</button>
+
+        <h2 style="text-align:center; color:#5ecabc;">Fundas de piscina</h2>
+        <div id="fundas"></div>
+        <button id="agregarFunda">➕ Agregar funda de piscina</button>
+
+        <button id="calcularTodo">Calcular total</button>
+
+    <div class="resultado-global">
+        <p>Subtotal: <span id="subtotalGlobal">0</span> CLP</p>
+        <p>IVA (19%): <span id="ivaGlobal">0</span> CLP</p>
+        <p><strong>Total final: <span id="totalGlobal">0</span> CLP</strong></p>
+    </div>
+
+        <p class="nota">Largo máximo 4.50 m, alto máximo 2.80 m.</p>
+    </div>
+
+    <script>
+        let numCortinas = 0;
+        let numFundas = 0;
+        const precioM2 = 25000;
+        const iva = 0.19;
+
+        const valoresExtra = {
+            "roller exterior": 110000,
+            "manivela": 180000,
+            "automático": 250000,
+            "manual": 90000,
+            "paravento manivela": 450000,
+            "paravento automático": 550000,
+            "igloo resorte": 1200000,
+            "igloo automático": 1350000
+        };
+
+        function crearCortina() {
+        numCortinas++;
+        const contenedor = document.getElementById("cortinas");
+        const bloque = document.createElement("div");
+        bloque.classList.add("bloque");
+        bloque.innerHTML = `
+        <h3>Cortina ${numCortinas}</h3>
+        <label>Ancho (m):</label><input type="number" id="ancho${numCortinas}" step="0.01" min="0">
+        <label>Alto (m):</label><input type="number" id="alto${numCortinas}" step="0.01" min="0">
+        <label>Sistema:</label>
+        <select id="sistema${numCortinas}">
+            <option value="roller exterior">Roller exterior</option>
+            <option value="manivela">Manivela</option>
+            <option value="automático">Automático</option>
+            <option value="manual">Manual</option>
+            <option value="paravento manivela">Paravento manivela</option>
+            <option value="paravento automático">Paravento automático</option>
+            <option value="igloo resorte">Igloo resorte</option>
+            <option value="igloo automático">Igloo automático</option>
+        </select>
+        <label>Tipo de tela:</label>
+        <select id="tipo${numCortinas}">
+        <option value="screen">Screen</option>
+        <option value="pvc">PVC</option>
+        </select>
+        <p><strong>Total cortina:</strong> <span id="resultado${numCortinas}">0</span> CLP</p>
+        `;
+        contenedor.appendChild(bloque);
+    }
+    function crearFunda() {
+        numFundas++;
+        const contenedor = document.getElementById("fundas");
+        const bloque = document.createElement("div");
+        bloque.classList.add("bloque");
+        bloque.innerHTML = `
+        <h3>Funda ${numFundas}</h3>
+        <label>Ancho (m):</label><input type="number" id="fundaAncho${numFundas}" step="0.01" min="0">
+        <label>Largo (m):</label><input type="number" id="fundaLargo${numFundas}" step="0.01" min="0">
+        <p><strong>Total funda:</strong> <span id="fundaResultado${numFundas}">0</span> CLP</p>
+        `;
+        contenedor.appendChild(bloque);
+    }
+
+        function calcularCortina(i) {
+            const ancho = parseFloat(document.getElementById(`ancho${i}`).value) || 0;
+            const alto = parseFloat(document.getElementById(`alto${i}`).value) || 0;
+            const sistema = document.getElementById(`sistema${i}`).value;
+
+            if (ancho > 4.5 || alto > 2.8) {
+            alert(`⚠️ Cortina ${i}: máximo 4,50 m de ancho y 2,80 m de alto`);
+            return 0;
+            }
+    
+            const area = ancho * alto;
+            const subtotal = area * precioM2 + (valoresExtra[sistema] || 0);
+            document.getElementById(`resultado${i}`).innerText = subtotal.toLocaleString("es-CL");
+            return subtotal;
+    }
+
+        function calcularFunda(j) {
+        const ancho = parseFloat(document.getElementById(`fundaAncho${j}`).value) || 0;
+        const largo = parseFloat(document.getElementById(`fundaLargo${j}`).value) || 0;
+        const total = ancho * largo * precioM2;
+        document.getElementById(`fundaResultado${j}`).innerText = total.toLocaleString("es-CL");
+        return total;
+    }
+
+    function calcularTotal() {
+        let subtotalGlobal = 0;
+        for (let i = 1; i <= numCortinas; i++) subtotalGlobal += calcularCortina(i);
+        for (let j = 1; j <= numFundas; j++) subtotalGlobal += calcularFunda(j);
+        const totalIVA = subtotalGlobal * iva;
+        const totalFinal = subtotalGlobal + totalIVA;
+        document.getElementById("subtotalGlobal").innerText = subtotalGlobal.toLocaleString("es-CL");
+        document.getElementById("ivaGlobal").innerText = totalIVA.toLocaleString("es-CL");
+        document.getElementById("totalGlobal").innerText = totalFinal.toLocaleString("es-CL");
+    }
+
+        document.getElementById("agregarCortina").addEventListener("click", crearCortina);
+        document.getElementById("agregarFunda").addEventListener("click", crearFunda);
+        document.getElementById("calcularTodo").addEventListener("click", calcularTotal);
+
+       // Crear una cortina por defecto
+        crearCortina();
+    </script>
+
+</body>
+</html>
