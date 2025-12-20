@@ -1,0 +1,56 @@
+        <!doctype html>
+        <html lang="es">
+        <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <title>Tienda Demo — Carrito de Compras</title>
+        <link rel="stylesheet" href="assets/css/style.css" />
+        </head>
+        <body>
+            <header class="header">
+              <h1>Tienda Demo</h1>
+              <button id="cart-toggle" class="btn">Carrito (<span id="cart-count">0</span>)</button>
+            </header>
+        
+            <main class="container">
+              <section id="products" class="products-grid" aria-live="polite"></section>
+            
+              <aside id="cart" class="cart-panel hidden" aria-label="Carrito de compras">
+                <h2>Tu carrito</h2>
+                <div id="cart-items" class="cart-items"></div>
+            
+                <div class="cart-footer">
+                <div class="total">Total: <strong id="cart-total">$0.00</strong></div>
+                <div class="actions">
+                     <button id="clear-cart" class="btn btn-light">Limpiar</button>
+                   <button id="checkout" class="btn btn-primary">Pagar</button>
+                </div>
+                </div>
+              </aside>
+            </main>
+        
+            <template id="product-tpl">
+            <article class="product">
+              <img class="product-img" alt="">
+              <h3 class="product-title"></h3>
+              <div class="product-price"></div>
+              <button class="btn add-to-cart">Agregar</button>
+            </article>
+          </template>
+      
+          <template id="cart-item-tpl">
+            <div class="cart-item">
+              <div class="info">
+                <div class="title"></div>
+                <div class="price"></div>
+              </div>
+              <div class="controls">
+                <input type="number" min="1" class="qty" value="1" />
+                <button class="remove" title="Eliminar">✕</button>
+              </div>
+            </div>
+          </template>
+      
+          <script src="assets/js/app.js"></script>
+        </body>
+        </html>
