@@ -1,0 +1,72 @@
+:root{
+  --bg:#f5f7fb;
+  --card:#fff;
+  --accent:#0077cc;
+  --muted:#666;
+}
+*{box-sizing:border-box}
+body{
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+  margin:0;
+  background:var(--bg);
+  color:#36bae2;
+}
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:1rem;
+  background:linear-gradient(90deg,#fff, #f0f6ff);
+  border-bottom:1px solid #e6eefb;
+}
+h1{margin:0;font-size:1.1rem}
+button{cursor:pointer}
+main{
+  display:flex;
+  gap:1rem;
+  padding:1rem;
+}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+  gap:1rem;
+  flex:1;
+}
+.product{
+  background:var(--card);
+  padding:0.75rem;
+  border-radius:8px;
+  box-shadow:0 1px 0 rgba(0,0,0,0.03);
+  display:flex;
+  flex-direction:column;
+  gap:0.5rem;
+  align-items:start;
+}
+.product img{width:100%;height:120px;object-fit:cover;border-radius:6px}
+.product-title{margin:0;font-size:0.95rem}
+.product-price{margin:0;color:var(--muted)}
+.add-to-cart{margin-top:auto;background:var(--accent);color:#fff;border:none;padding:0.5rem 0.6rem;border-radius:6px}
+
+#cart{
+  width:320px;
+  background:var(--card);
+  padding:1rem;
+  border-radius:8px;
+  box-shadow:0 6px 20px rgba(11,20,40,0.08);
+  height:fit-content;
+}
+.hidden{display:none}
+.cart-item{display:flex;justify-content:space-between;align-items:center;padding:0.5rem 0;border-bottom:1px solid #f0f3f8}
+.cart-item:last-child{border-bottom:none}
+.cart-item-info{max-width:60%}
+.cart-item-title{font-weight:600}
+.cart-item-price{color:var(--muted);font-size:0.9rem}
+.cart-item-controls{display:flex;gap:0.5rem;align-items:center}
+.cart-summary{margin-top:0.75rem;display:flex;flex-direction:column;gap:0.5rem}
+.cart-actions{display:flex;gap:0.5rem;justify-content:flex-end}
+input.cart-qty{width:60px;padding:0.25rem;border-radius:6px;border:1px solid #ddd}
+#cart-toggle{background:transparent;border:1px solid #e3eefb;padding:0.4rem 0.6rem;border-radius:6px}
+@media (max-width:800px){
+  main{flex-direction:column}
+  #cart{width:100%}
+}

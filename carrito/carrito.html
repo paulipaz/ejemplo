@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Carrito de Compras - Ejemplo</title>
+  <link rel="stylesheet" href="assets/css/carritostyle.css" />
+</head>
+<body>
+  <header>
+    <h1>Tienda de ejemplo</h1>
+    <button id="cart-toggle" aria-label="Mostrar carrito">Carrito (<span id="cart-count">0</span>)</button>
+  </header>
+
+  <main>
+    <section id="products" class="grid"></section>
+
+    <aside id="cart" class="hidden" aria-live="polite">
+      <h2>Tu carrito</h2>
+      <div id="cart-items"></div>
+      <div class="cart-summary">
+        <div>Total: <strong id="cart-total">$0.00</strong></div>
+        <div class="cart-actions">
+          <button id="clear-cart">Limpiar</button>
+          <button id="checkout">Pagar</button>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <template id="product-template">
+    <article class="product">
+      <img class="product-image" alt="">
+      <h3 class="product-title"></h3>
+      <p class="product-price"></p>
+      <button class="add-to-cart">Agregar al carrito</button>
+    </article>
+  </template>
+
+  <template id="cart-item-template">
+    <div class="cart-item">
+      <div class="cart-item-info">
+        <div class="cart-item-title"></div>
+        <div class="cart-item-price"></div>
+      </div>
+      <div class="cart-item-controls">
+        <input type="number" min="1" class="cart-qty" value="1" />
+        <button class="remove-item" title="Eliminar">✕</button>
+      </div>
+    </div>
+  </template>
+
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
