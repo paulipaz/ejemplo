@@ -1,15 +1,13 @@
-/* Carrito simple - guarda en localStorage
-   - Productos de ejemplo
-   - Agregar/actualizar/eliminar
-   - Checkout POST /checkout (opcional)
-*/
 
 const PRODUCTS = [
-  { id: 'p1', title: 'Camiseta básica', price: 19.99, image: 'https://picsum.photos/seed/p1/400/300' },
-  { id: 'p2', title: 'Pantalón cómodo', price: 39.9, image: 'https://picsum.photos/seed/p2/400/300' },
-  { id: 'p3', title: 'Mochila urbana', price: 59.5, image: 'https://picsum.photos/seed/p3/400/300' },
-  { id: 'p4', title: 'Gorra deportiva', price: 14.25, image: 'https://picsum.photos/seed/p4/400/300' }
+  { id: 'p1', title: 'Sistema Automático', price: 19.99, image: "assets/img/3.png" },
+  { id: 'p2', title: "Igloo con resorte", price: 39.9, image: "assets/img/4.png" },
+  { id: 'p3', title: "Paravento Automático", price: 59.5, image: "assets/img/5.png" },
+  { id: 'p4', title: "Sistema Manivela", price: 14.25, image: "assets/img/6.png" },
+  { id: 'p5', title: "Sistema Roller Exterior", price: 14.25, image: "assets/img/7.png" },
+  { id: 'p6', title: "Igloo", price: 14.25, image: "assets/img/1.png" }
 ];
+
 
 const storageKey = 'mi_carrito_v1';
 
