@@ -1,11 +1,11 @@
 
 const PRODUCTS = [
-  { id: 'p1', title: 'Sistema Automático', price: 19.99, image: "assets/img/3.png" },
-  { id: 'p2', title: "Igloo con resorte", price: 39.9, image: "assets/img/4.png" },
-  { id: 'p3', title: "Paravento Automático", price: 59.5, image: "assets/img/5.png" },
-  { id: 'p4', title: "Sistema Manivela", price: 14.25, image: "assets/img/6.png" },
-  { id: 'p5', title: "Sistema Roller Exterior", price: 14.25, image: "assets/img/7.png" },
-  { id: 'p6', title: "Igloo", price: 14.25, image: "assets/img/1.png" }
+  { id: 'p1', title: 'Sistema Automático', price: 39990., image: "assets/img/3.png" },
+  { id: 'p2', title: "Igloo con resorte", price: 39990., image: "assets/img/4.png" },
+  { id: 'p3', title: "Paravento Automático", price: 39990., image: "assets/img/5.png" },
+  { id: 'p4', title: "Sistema Manivela", price: 39990., image: "assets/img/6.png" },
+  { id: 'p5', title: "Sistema Roller Exterior", price: 39990., image: "assets/img/7.png" },
+  { id: 'p6', title: "Igloo", price: 39990., image: "assets/img/1.png" }
 ];
 
 
@@ -115,7 +115,6 @@ el.clearCartBtn.addEventListener('click', ()=>{
 el.checkoutBtn.addEventListener('click', async ()=>{
   const items = getCartItems();
   if(items.length === 0){ alert('El carrito está vacío'); return; }
-  // Intentamos enviar a /checkout si existe un servidor
   try{
     const resp = await fetch('/checkout', {
       method: 'POST',
@@ -131,7 +130,7 @@ el.checkoutBtn.addEventListener('click', async ()=>{
       alert('Error en checkout: ' + resp.status + ' ' + text);
     }
   } catch(err){
-    // Sin servidor, simplemente simular checkout
+
     console.warn('No se pudo conectar al servidor de checkout:', err);
     alert('Simulación de pago completa (sin servidor).');
     clearCart();
